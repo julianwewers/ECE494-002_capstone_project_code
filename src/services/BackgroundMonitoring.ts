@@ -35,7 +35,7 @@ const AndroidBackgroundMonitoring: BackgroundMonitoringService = {
   },
 };
 
-// iOS/other platforms - stub implementation (no-op)
+// iOS/other platforms - stub implementation (no-op) currently does not support
 const StubBackgroundMonitoring: BackgroundMonitoringService = {
   startMonitoring: async (): Promise<string> => {
     console.log('Background monitoring not implemented for this platform');
@@ -55,3 +55,4 @@ const StubBackgroundMonitoring: BackgroundMonitoringService = {
 // Export platform-specific implementation
 export const BackgroundMonitoring: BackgroundMonitoringService =
   Platform.OS === 'android' ? AndroidBackgroundMonitoring : StubBackgroundMonitoring;
+

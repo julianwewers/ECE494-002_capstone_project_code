@@ -27,7 +27,7 @@ declare module 'react-native-vector-icons/Ionicons' {
   export default class Icon extends Component<IconProps> {}
 }
 
-// Add more icon libraries as needed
+// To expand libraireis content as needed
 declare module 'react-native-vector-icons/FontAwesome' {
   import { Component } from 'react';
   import { TextStyle, ViewStyle } from 'react-native';
@@ -40,4 +40,5 @@ declare module 'react-native-vector-icons/FontAwesome' {
   }
 
   export default class Icon extends Component<IconProps> {}
+
 }

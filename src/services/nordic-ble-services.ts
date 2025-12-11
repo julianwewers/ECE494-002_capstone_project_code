@@ -1,5 +1,5 @@
 // Nordic nRF52840 + SeedStudio Heart Rate & SpO2 Sensor
-// BLE GATT Services and Characteristics - Complete Corrected Version
+// BLE GATT Services and Characteristics - Complete 
 
 // Standard BLE Service UUIDs (16-bit format)
 export const STANDARD_SERVICES = {
@@ -29,11 +29,11 @@ export const SEEDSTUDIO_CHARACTERISTICS = {
 } as const;
 
 
-// Data parsing interfaces following user's TypeScript strict preferences
+// Data parsing interfaces 
 export interface HeartRateData {
-  heartRate: number;          // BPM (beats per minute)
+  heartRate: number;          // BPM 
   contactDetected: boolean;   // Sensor contact with skin
-  energyExpended?: number;    // Optional energy in kJ
+  energyExpended?: number;    // Optional energy in kJ for future feature
   timestamp: Date;
   deviceId: string;
 }
@@ -94,7 +94,7 @@ export interface CombinedSensorReading {
   timestamp: Date;
 }
 
-// Type guards for data validation (following user's preference for validation layer)
+// Type guards for data validation
 export const isValidHeartRateData = (data: unknown): data is HeartRateData => {
   return (
     typeof data === 'object' &&
@@ -120,7 +120,7 @@ export class NordicDataParser {
     if (data.length < 3) return null;
     
     try {
-      // Check for Seeed Studio protocol headers (from MR60BHA documentation)
+      // Check for Seeed Studio protocol headers 
       const header1 = data[0];
       const header2 = data[1];
       
@@ -351,7 +351,7 @@ export class NordicDataParser {
       
       const samples: BufferedAccelerometerData[] = [];
 
-      // Extract all 20 samples
+      // Extracts all 20 samples
       for (let i = 0; i < 20; i++) {
         // Extract X, Y, Z for this sample
         const xG = this.parseInt16LE(data, 4 + i * 2);   // accelStoredBuffX[i]
@@ -378,7 +378,7 @@ export class NordicDataParser {
     }
   }
 
-  // Helper: Parse 16-bit signed integer (little-endian)
+  // Parse 16-bit signed integer (little-endian)
   private static parseInt16LE(data: Uint8Array, offset: number): number {
     const value = data[offset] | (data[offset + 1] << 8);
     // Convert to signed integer
@@ -401,7 +401,7 @@ export class NordicDataParser {
     }
     
     if (data.length >= 2 && (data[0] & 0x01) !== undefined) {
-      // Likely standard heart rate format
+      // Standard heart rate format
       return 'standard';
     }
     
